@@ -12,7 +12,7 @@ echo Different visitor appearance: automatic new round.
 echo Visitor archive IDs begin at N.00001 and continue after restart.
 echo Arduino firmware remains BUILD 4-compatible on servo pin D9.
 echo.
-py PUPPET_EXHIBITION_BUILD_5_3.py
+py PUPPET_EXHIBITION_BUILD.py
 echo.
 echo Program closed. Read any error shown above.
 pause
