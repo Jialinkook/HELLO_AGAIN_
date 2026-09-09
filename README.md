@@ -1,12 +1,12 @@
 # Hello Again
-
+![Hello Again interactive puppet installation](assets/hello-again-installation.jpg)
 **Hello Again** is an interactive computational art installation by Jialin Xin. A suspended wooden puppet responds when a visitor waves. Across ten responses, its movement becomes smaller and slower, suggesting physical fatigue. Programmed variation, an unexpected second wind, autonomous movement and refusal make the puppet appear to develop its own behaviour.
 
 ## Video documentation
 
 Add the final public or unlisted video URL here:
 
-`https://www.youtube.com/watch?v=YOUR_VIDEO_ID`
+`https://vimeo.com/1225223447?fl=tl&fe=ec&share=copy`
 
 ## Interaction
 
