@@ -5,9 +5,8 @@
 
 ## Video documentation
 
-Add the final public or unlisted video URL here:
+[Watch the video documentation on Vimeo](https://vimeo.com/1225223447?fl=tl&fe=ec&share=copy)
 
-`https://vimeo.com/1225223447?fl=tl&fe=ec&share=copy`
 
 ## Interaction
 
