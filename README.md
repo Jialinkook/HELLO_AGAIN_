@@ -1,99 +1,177 @@
-# HELLO_AGAIN_
+# Hello Again
 
-WHAT CHANGED
-------------
-- Camera capture, MediaPipe tracking and the interface are capped at 15 FPS.
-  Camera input is 960x540 while the final exhibition display remains
-  1920x1080, reducing laptop load without shrinking the projected image.
-- The main instruction and PUPPET THOUGHT use a portable block-pixel typeface.
-  It is drawn by the program and does not require a font installation.
-- THANK YOU remains on screen for exactly five seconds after response 10, then
-  the work returns automatically to the black-and-white start screen.
-- When the upper-body appearance changes continuously for about one second,
-  the current partial interaction is reset for the new visitor. This uses a
-  temporary clothing/torso colour histogram, not face recognition. It does not
-  save a body crop or biometric identity data.
-- Before the first accepted wave, the live camera and memory field are black
-  and white. The centre of the screen clearly says WAVE YOUR HANDS.
-- The first accepted wave restores the camera's original colour immediately.
-- During the visitor session, the centre instruction says KEEP WAVING.
-- At response 10, the centre instruction says THANK YOU / STEP AWAY FOR THE
-  NEXT PERSON. Response 10 no longer starts a water break.
-- BODY ENERGY and the articulated puppet scan are significantly larger.
-- PUPPET THOUGHT is a large, high-contrast lower-third line rendered with a
-  TrueType font at the final 1920x1080 display resolution.
-- Each visitor receives one persistent five-digit archive identifier:
-  N.00001, N.00002, N.00003, and so on.
-- One faint identifier line appears at the top of that visitor's memory
-  window. Each visitor contributes one representative image, not one image
-  per wave.
-- The right panel shows VISITORS 01/10 for the current water-break cycle.
-- A 30-second water break starts only after the tenth separate visitor session
-  ends. It no longer starts after ten waves from one person.
+**Hello Again** is an interactive computational art installation by Jialin Xin. A suspended wooden puppet responds when a visitor waves. Across ten responses, its movement becomes smaller and slower, suggesting physical fatigue. Programmed variation, an unexpected second wind, autonomous movement and refusal make the puppet appear to develop its own behaviour.
 
-HOW A VISITOR SESSION IS COUNTED
---------------------------------
-1. A new session is registered when a visitor's first wave is accepted.
-2. The visitor can perform up to ten wave responses.
-3. After response 10, THANK YOU stays for five seconds and the screen returns
-   to its black-and-white waiting state automatically.
-4. An unfinished round also resets after four seconds with nobody visible, or
-   after a sustained change to a different-looking visitor.
-5. After visitor 10 completes the five-second THANK YOU screen, the 30-second
-   water break begins.
-6. After the break, VISITORS returns to 00/10. Archive numbering continues.
+## Video documentation
 
-The system counts separate interaction sessions, not biometric identities.
-The visitor-change feature compares clothing/torso appearance only, so two
-people in very similar clothing may still require one person to step away.
-Two people standing together are treated as one session.
+Add the final public or unlisted video URL here:
 
-RUN
----
-1. Extract every file into one new empty folder.
-2. Keep Arduino Serial Monitor closed.
-3. Double-click START_PUPPET_BUILD_5_3.bat.
+`https://www.youtube.com/watch?v=YOUR_VIDEO_ID`
 
-If BUILD 4 firmware already works with the servo signal on Arduino Mega D9,
-you do not need to upload it again. PUPPET_BUILD_5_D9.ino is included only as
-a matching backup.
+## Interaction
 
-INSTALL DEPENDENCIES IF NEEDED
-------------------------------
-py -m pip install -r PUPPET_BUILD_5_REQUIREMENTS.txt
+1. The visitor enters the marked interaction area and waves.
+2. A camera captures the visitor in real time.
+3. MediaPipe detects the hand and Python analyses its horizontal movement.
+4. An accepted wave increases the interaction count and sends a serial command to Arduino.
+5. Arduino moves a servo connected to the puppet's arm.
+6. The screen displays hand landmarks, body energy, the puppet's thoughts and traces of previous visitors.
 
-VISITOR NUMBER FILE
--------------------
-On first use, the program creates PUPPET_VISITOR_COUNTER.json beside the
-Python file. This keeps the next N.00001-style number after the app closes.
-To deliberately restart the archive numbering at N.00001, close the program
-and delete only PUPPET_VISITOR_COUNTER.json.
+Each audience cycle contains ten accepted waves:
 
-CONTROLS
---------
-N  Advance one response manually.
-T  Test one ordinary 180-degree action.
-B  Test the double second-wind burst.
-C  Restart the current visitor round.
-F  Toggle fullscreen.
-H  Show/hide diagnostics.
-Q  Quit.
+- Responses 1–6 gradually reduce the servo angle from 180° to 60°.
+- Response 7 produces a sudden double movement called **Second Wind**.
+- Responses 8–9 use controlled random angles.
+- Response 10 returns the arm to 0° and represents refusal.
 
-SETTINGS
---------
-At the top of PUPPET_EXHIBITION_BUILD_5_3.py:
+A visitor session is registered when its first wave is accepted. After the visitor counter reaches ten and a ten-response cycle is completed, the puppet enters a 30-second **Water Break**.
+
+## Main features
+
+- Real-time hand and upper-body tracking with MediaPipe
+- Horizontal wave recognition using tracked hand positions
+- Ten-stage fatigue and energy system
+- Controlled-random and autonomous puppet movement
+- Arduino-to-Python serial communication
+- Live puppet-state and interaction interface
+- Temporary collective-memory windows with visitor IDs
+- Automatic visitor handover and abandoned-session reset
+- Thirty-second Water Break after ten registered sessions
+
+## System
+
+```text
+Audience wave
+    ↓
+Camera and MediaPipe
+    ↓
+Python gesture and behaviour system
+    ↓
+Serial command
+    ↓
+Arduino Mega and servo
+    ↓
+Physical puppet movement
+```
+
+## Hardware
+
+- Windows computer
+- USB camera
+- Arduino Mega
+- Servo motor
+- External regulated 5 V servo power supply
+- Laser-cut wooden puppet
+- Suspension line and wooden enclosure
+
+### Servo wiring
+
+- Signal: Arduino Mega pin D9
+- Servo power: external 5 V supply
+- Servo ground: external supply ground
+- Arduino ground: connected to the external supply ground
+
+Do not power a high-load servo directly from the Arduino 5 V pin.
+
+## Software
+
+- Python
+- OpenCV
+- MediaPipe 0.10.21
+- NumPy
+- pySerial
+- Pillow
+- Arduino Servo library
+
+## Repository structure
+
+```text
+HELLO_AGAIN_/
+├── README.md
+└── Hello again/
+    ├── PUPPET_EXHIBITION_BUILD.py
+    ├── PUPPET_BUILD_REQUIREMENTS.txt
+    ├── START_PUPPET_BUILD.bat
+    └── PUPPET_BUILD/
+        └── PUPPET_BUILD.ino
+```
+
+`PUPPET_VISITOR_COUNTER.json` is generated while the program is running. It stores only the next numerical visitor ID and is not required in the repository.
+
+## Installation
+
+### 1. Download the project
+
+Clone the repository or download it as a ZIP:
+
+```bash
+git clone https://github.com/Jialinkook/HELLO_AGAIN_.git
+```
+
+### 2. Install the Python dependencies
+
+Open a terminal inside the `Hello again` folder and run:
+
+```bash
+py -m pip install -r PUPPET_BUILD_REQUIREMENTS.txt
+```
+
+### 3. Upload the Arduino program
+
+1. Open `PUPPET_BUILD/PUPPET_BUILD.ino` in Arduino IDE.
+2. Select the Arduino Mega and its correct port.
+3. Upload the program.
+4. Close Arduino Serial Monitor before starting Python.
+
+### 4. Check the device settings
+
+At the top of `PUPPET_EXHIBITION_BUILD.py`, confirm:
+
+```python
 SERIAL_PORT = "COM3"
-CAMERA_INDEX = 1
-TARGET_FPS = 15.0
+CAMERA_INDEX = 0
+```
 
-Change only these values if Windows assigns a different device number.
+Change these values if Windows assigns a different Arduino port or camera index. Camera indices `0`, `1` and `2` are common.
 
-EXPECTED TERMINAL LINE
-----------------------
+## Running the installation
+
+Double-click:
+
+```text
+START_PUPPET_BUILD.bat
+```
+
+The expected terminal message is:
+
+```text
 RUNNING BUILD 5.3: 15 FPS / 5S THANK YOU / VISITOR CHANGE
+```
 
-HARDWARE
---------
-Servo signal: Arduino Mega D9.
-Servo power: external 5V supply.
-External power GND and Arduino GND must be connected together.
+## Operator controls
+
+| Key | Action |
+|---|---|
+| `N` | Manually advance one audience response |
+| `T` | Test one ordinary 180° servo movement |
+| `B` | Test the Second Wind double movement |
+| `C` | Restart the current audience cycle |
+| `F` | Toggle fullscreen |
+| `H` | Show or hide diagnostics and shortcuts |
+| `Q` / `Esc` | Quit |
+
+## Data and privacy
+
+The project does not use facial recognition. It compares a temporary torso-colour histogram to support visitor handover. One representative camera image per registered session may appear in the collective-memory interface, but these images and the histogram are kept only in memory and are not saved to disk. The only persistent data is the next numerical visitor ID.
+
+## Technical references and acknowledgement
+
+The system uses [MediaPipe](https://github.com/google-ai-edge/mediapipe), [OpenCV](https://opencv.org/), [Arduino Servo](https://docs.arduino.cc/libraries/servo/) and [pySerial](https://pyserial.readthedocs.io/). Full creative and theoretical references are provided in the project documentation PDF.
+
+OpenAI ChatGPT was used to support code drafting, debugging and language editing. The final system was modified, assembled and tested by the author.
+
+## Author
+
+Jialin Xin  
+MA/MFA Computational Arts, Goldsmiths, University of London
+
