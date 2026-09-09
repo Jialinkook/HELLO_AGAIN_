@@ -1,4 +1,4 @@
-"""PUPPET EXHIBITION BUILD 5.3: lower-load tracking and visitor handover.
+"""PUPPET EXHIBITION BUILD: lower-load tracking and visitor handover.
 
 The camera stays visually clean while only a few important hand joints are
 marked with white dots. MediaPipe provides wave detection, visible hand
