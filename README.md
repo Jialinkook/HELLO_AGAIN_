@@ -168,7 +168,7 @@ The project does not use facial recognition. It compares a temporary torso-colou
 
 The system uses [MediaPipe](https://github.com/google-ai-edge/mediapipe), [OpenCV](https://opencv.org/), [Arduino Servo](https://docs.arduino.cc/libraries/servo/) and [pySerial](https://pyserial.readthedocs.io/). Full creative and theoretical references are provided in the project documentation PDF.
 
-OpenAI ChatGPT was used to support code drafting, debugging and language editing. The final system was modified, assembled and tested by the author.
+OpenAI ChatGPT was used to assist with debugging and organising the code. All final design decisions, code modifications, physical construction and testing were completed by the author.
 
 ## Author
 
