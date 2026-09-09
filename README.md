@@ -173,5 +173,5 @@ OpenAI ChatGPT was used to assist with debugging and organising the code. All fi
 ## Author
 
 Jialin Xin  
-MA/MFA Computational Arts, Goldsmiths, University of London
+MFA Computational Arts, Goldsmiths, University of London
 
